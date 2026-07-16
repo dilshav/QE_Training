@@ -1,0 +1,275 @@
+Selenium
+
+Automation Tool, uses html/css properties
+
+css finds input class by:
+#username  -->single id
+.signin-input --> class name
+.input.signin-input
+
+
+maven project->create a simple artifact
+groupid: com.ibm
+artifactid: FST_Selenium
+pom.xml->add dependency, add property from java file - 1.8 to java 25(as 25 on system)
+right click -> maven->update project
+
+Selenium has 3 components:
+Selenium Webdriver(firefox:geckodriver.exe(driver for firefox is gecko but class is Firefoxdriver), chrome: chromedriver.exe, edge: edgedriver.exe)
+Selenium Grid
+Selenium IDE - plugin to record test(records action- then to tes-only firefox)
+
+https://training-support.net/
+
+ctrl+shift+o --> for importing all packages
+
+webdriver commands: 3 types
+1. browser commands- 
+Open a browser to a webpage	driver.get()	driver.get()
+Get the title of the page you're on	driver.getTitle()	driver.title
+Close the current active browser tab	driver.close()	driver.close()
+Close all the selenium managed browser tabs	driver.quit()	driver.quit()
+
+2.Navigation commands
+Navigate to another page	driver.navigate().to()	driver.get()
+Go back in your history	driver.navigate().back()	driver.back()
+Go forwards in your history	driver.navigate().forward()	driver.forward()
+Refresh the page	driver.navigate().refresh()	driver.refresh()
+
+3. WebElement Commands
+Click on an element	element.click()	element.click()
+Type into an element	element.sendKeys()	element.send_keys()
+Get the text inside an element	element.getText()	element.text
+Get the value of an attribute	element.getAttribute()	element.get_attribute()
+Get the value of a CSS property	element.getCssValue()	element.value_of_css_property()
+
+In this command we can get:
+-Action -> click() {left click}, sendkeys() {for typing to input field}, clear(), submit()
+-Access -> getText(), getAttribute(), getDomProperty(), getCSSValue()
+-Assertion -> isDisplayed(), isEnabled(), isSelected()
+
+Selenium Commands:
+* Browser commands:
+    * get
+    * getTitle
+    * close
+    * quit
+* Navigation commands:
+    * back
+    * forward
+    * refresh
+* WebElement commands:
+    - Action:
+        * click() -> Left click
+        * sendKeys() -> Typing text into an input field
+        * clear() -> Clear the text from an input field
+        * submit() -> Submitting a form
+    - Accessor:
+        * getText() -> Getting the text from a web element
+        * getAttribute() -> Getting the value of an attribute from a web element
+        * getDomProperty() -> Getting the value of a DOM property from a web element
+            - Used mostly for getting the value from an input field
+        * getCssValue() -> Getting the value of a CSS property from a web element
+    - Assertion: return boolean
+        * isDisplayed() -> Checking if a web element is visible on the page
+        * isEnabled() -> Checking if a web element is enabled (interactable)
+        * isSelected() -> Checking if a web element (like a checkbox or radio button) is selected
+
+
+To find a single element: findElement() -> WebElement
+    - Return a NoSuchElementException when elements are not found
+To find a multiple element: findElements() -> List<WebElement>
+    - Returns an empty list when elements are not found
+
+findElement take a locator as arguments. Locators come from the By class
+* By.id("value")
+* By.name("name") -> Used mainly for inputs
+* By.className("one class")
+* By.cssSelector("css patterns")
+* By.xpath("xpath expression") -a> Most versatile locator
+* By.linkText("link text") -> Used only for anchor tag <a>
+* By.partialLinkText("partial link text") -> Used only for anchor tag <a>
+* By.tagName("tag")
+
+
+Selenium Waits:
+*Implicit wait: Implemented through driver.manage().timeouts().implicitlyWait(Timeout: milliseconds) or driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5))
+- should be in the program, before any interactions. Only needs to be set once.
+-If the actions is not complete in the timeout time, throws a TimeoutException
+-It checks for the presence of the elements.
+
+*Explicit wait: Implemented using WebDriverWait object
+ - Wait conditions are in ExpectedConditions class: https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/support/ui/ExpectedConditions.html
+
+-Example USage:
+webDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+wait.until(ExpectedConditions.conditionMethods(WebElement or Locator));
+checks ever 500 millisecond
+
+if both written implicit overridden by explicit
+
+
+xpath : 2 types
+*Absolute xpath : start with root and has only one slash
+<!-- Absolute XPath -->
+/html/body/div[1]/section/div[1]/div/div/div/div[1]/div/div/div/div/div[3]
+*Relative Xpath : finds through whole html
+<!-- Relative XPath -->
+//div[@class='featured-box']
+//tagName[@attribute='value']
+//tagName[text() = 'value']
+//tagName[contains(@attribute | text(), 'value')]
+//tagName[stats-with@attribute | ]
+eg: //input[@name='name']
+    //input[@placeholder='Enter your name']
+    //button[text()='Submit']
+    //input[contains(@placeholder,'Enter')] ->everything is case sensitive
+
+
+Complex keyboard actions: sendKeys(String), keyDown(key), keyUps(key)
+clickandHold must have release()
+keydown should have keyUp
+* Create the Actions
+Actions builder = new Actions(driver);
+
+* Create the sequence of actions to perform:
+builder.clickAndHold(WebElement).moveToElement(destWebElement).release().build().perform();
+
+builder.contextClick(WebElement).perform();
+
+selenium date always in YYYY-MM-DD format
+
+
+Tables in selenium
+dynamic and static table
+
+Handling Selects
+The <select> element is typically used to create a drop-down list.
+The <option> tags inside the <select> element define the available options in the list.
+Adding a 'multiple' attribute to a <select> tag allows us to select multiple options.
+<select>
+    <option>Select an Option</option>
+    <option>Option 1</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+</select>
+
+<select multiple>
+    <option value="">Skills</option>
+    <option value="angular">Angular</option>
+    <option value="css">CSS</option>
+    <option value="ruby">Ruby</option>
+    <option value="ui">UI Design</option>
+    <option value="ux">User Experience</option>
+</select>
+//Find element using locator
+WebElement selectElem = driver.findElement(By.xpath("//select"));
+
+//Initialize Select object - passthe webelement to Select class constructor:
+Select dropdown = new Select(selectElem);
+
+To interact with a dropdown:
+*Select option by index: dropdown.selectbyIndex()
+*Select option by value: dropdown.selectbyVAlue()
+*Select option by visible text :dropdown.selectByVisibleText() ->[Recommended]
+*to get selected option: dropdown.getFirstSelectedOption() -> WebElement
+*De-Select option by index: dropdown.deselectbyIndex()
+*De-Select option by value: dropdown.deselectbyVAlue()
+*De-Select option by visible text :dropdown.deselectbyVisibleText() ->[Recommended]
+
+To interact with multilists:
+* Select options by index: multilist.selectByIndex()
+* Select options by value: multilist.selectByValue()
+* Select options by visible text: multilist.selectByVisibleText() [Recommended]
+* De-Select options by index: multilist.deselectByIndex()
+* De-Select options by value: multilist.deselectByValue()
+* De-Select options by visible text: multilist.deselectByVisibleText() [Recommended]
+* To get all the options: multilist.getOptions() -> List<WebElement>
+* To get the selected option: multilist.getFirstSelectedOption() -> WebElement
+* To get ALL the selected options: multilist.getAllSelectedOptions() -> List<WebElement>
+
+
+Handling Alerts
+To switch Selenium's focus: driver.switchTo()
+*Alerts: driver.switch().alert() -> Alert
+	-Accept the alert = Clicking OK : alert.accept()
+	-Dismiss the alert - clicking the Cancel: alert.dismiss()
+	-Get the alert text : alert.getText()
+	-[prompt only] to type into alert: alert.sendKeys()
+
+*Windows/Tabs: driver.switchTo.window
+
+
+
+* Alerts: driver.switchTo().alert() -> Alert
+    - Accept the alert = Clicking OK: alert.accept()
+    - Dismiss the alert = Clicking Cancel: alert.dismiss()
+    - Get the alert text: alert.getText()
+    - [For prompt ONLY] to type into the alert: alert.sendKeys()
+
+* Windows/Tabs: driver.switchTo.window(String handle)
+    - To get the current window's handle: driver.getWindowHandle() -> String
+    - To get ALL window's handles: driver.getWindowHandles() -> Set<String>
+
+* iFrame: driver.switchTo().frame(int index) | driver.switchTo().frame(id)
+    - Switch back to the parent page: driver.switchTo().defaultContent()
+
+Handling Popups - using explicit wait
+Link Test
+
+
+
+three kinds of pointer
+mouse, Pen,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

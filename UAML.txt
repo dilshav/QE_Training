@@ -1,0 +1,116 @@
+UAML diagram
+
+Exercise 1:
+The Setup: A user wants to withdraw money. The machine starts at the Idle screen.
+Once a card is inserted, it moves to the PIN Entry state. If the user enters the correct PIN,
+it moves to the Account Access state, where they can choose to withdraw money. After cash is dispensed,
+or if the user cancels at any point, the machine returns to Idle.
+
+State Transitions:
+Current State  | Event (Action)         | Next State
+Idle           | Insert Card            | PIN Entry
+PIN Entry      | Enter Correct PIN      | Account Access
+PIN Entry      | Cancel                 | Idle
+Account Access | Select Cash & Dispense | Idle
+Account Access | Cancel                 | Idle
+Create a State Transition diagram for the above table.
+
+
+Exercise 2:
+The Setup: A smart microwave starts in a Standby state. Opening the door shifts it to the Door Open state. Closing the door brings it back to Standby. From Standby, pressing the "30 Seconds" button puts it into the Cooking state. If the timer hits zero, it alerts the user and goes back to Standby. If the user presses "Stop" while it is cooking, it shifts to Paused. From Paused, pressing "Stop" again clears the timer and resets it to Standby.
+
+State Transitions:
+Current State | Event (Action)  | Next State
+Standby       | Open Door       | Door Open
+Door Open     | Close Door      | Standby
+Standby       | Press "30 Sec"  | Cooking
+Cooking       | Timer Reaches 0 | Standby
+Cooking       | Press "Stop"    | Paused
+Paused        | Press "Stop"    | Standby
+
+Exercise 3:
+The Setup: When a customer places an order, its initial state is Created. Once payment is authorized, it transitions to Paid. If the payment fails, it goes straight to Cancelled. From the Paid state, the warehouse team packages the items, moving it to Shipped. Once the logistics partner delivers it, the final state becomes Delivered. However, if the customer requests a cancellation while the order is still Paid (but not yet shipped), the system processes a refund and transitions the order to Refunded.
+
+State Transitions:
+Current State | Event (Action)         | Next State
+Created       | Payment Authorized     | Paid
+Created       | Payment Fails          | Cancelled
+Paid          | Items Dispatched       | Shipped
+Paid          | Customer Cancels Order | Refunded
+Shipped       | Delivery Confirmed     | Delivered
+
+
+
+
+
+
+
+
+UML Exercises:
+# Class Diagram Scenario: E-Commerce Shopping Cart
+* The Goal: How to translate object-oriented relationships and business validation rules into structural unit and integration tests.
+* The Scenario: You are designing an automated test suite for an e-commerce checkout engine. The system contains three primary classes:
+    * ShoppingCart: Tracks an array of CartItem objects. It has methods like addItem(item), removeItem(itemId), and calculateTotal(). It contains a business rule: The cart total cannot exceed a maximum capacity of $10,000.
+    * CartItem: Represents a product. It contains properties like productId (string), price (double), and quantity (int). It has an internal method getLineTotal() (price x quantity). Validation rule: Quantity must be greater than 0.
+    * DiscountApplier: An independent utility class with a method applyCoupon(cart, couponCode). It updates the cart's final total based on whether the coupon string is valid or expired.
+
+Test Case Mapping:
+Based on the class diagram they draw, the assertions will verify:
+* Boundary Test: CartItem.quantity initialization with 0 or -1 throws an IllegalArgumentException.
+* State Integration Test: Adding multiple CartItem instances correctly triggers updates to ShoppingCart.calculateTotal().
+* Maximum Threshold Test: Adding an item that pushes the total to $10,001 forces addItem() to return false or reject the operation.
+
+=================================================================================================================
+
+# Use-Case Diagram Scenario: OTT Streaming Platform (User Access)
+* The Goal: How to map system boundaries, actors, and functional inclusions (<<include>> / <<extend>>) to end-to-end automation test scenarios (e.g., Cucumber Feature files).
+* The Scenario: An online video streaming platform has two main actors: a Standard Subscriber and a Premium Subscriber.
+    * Both actors must interact with the system boundary to execute the core Use Case: Watch Video.
+    * The system dictates that the Watch Video use case strictly <<include>> an underlying use case: Authenticate Session.
+    * If a Standard Subscriber attempts to watch a video that is flagged as high-definition 4K content, the system triggers an <<extend>> use case: Display Upgrade Prompt.
+    * The Premium Subscriber can execute a specialized use case: Download Video for Offline Viewing, which standard users cannot access.
+
+Test Case Mapping:
+Translate this functional flow into high-level system integration tests:
+* Happy Path Assertions (Include): Verifying that triggering Watch Video automatically generates an API call validating Authenticate Session. If authentication fails, the video stream must not initialize.
+* Conditional Path Assertions (Extend): An automated UI script logs in as a Standard User, clicks a 4K title, and asserts that an upgrade modal (Display Upgrade Prompt) is visible on screen.
+* Role-Based Security Test: A regression test ensures that calling the background API endpoint for Download Video using a Standard User token returns an HTTP 403 Forbidden status code.
+
+=================================================================================================================
+
+# Sequence Diagram Scenario: API Gateway Multi-Factor Authentication (MFA)
+* The Goal: How to visualize the chronological flow of messages, timeouts, and asynchronous responses between objects to write robust API and integration automation scripts.
+* The Scenario: An automation test needs to validate a secure login sequence involving four distinct lifelines: Client UI, API Gateway, Auth Service, and SMS Provider.
+    * The Client UI sends a synchronous message login(user, pass) to the API Gateway.
+    * The API Gateway forwards the payload to the Auth Service to check database credentials.
+    * The Auth Service verifies the credentials and returns a status Credentials_Valid, Require_MFA.
+    * The API Gateway loops internally to generate a random 6-digit token, then sends an asynchronous call sendSMS(phone, token) to the external SMS Provider.
+    * The API Gateway returns a 202 Accepted response back to the Client UI, prompting the user to enter the code.
+    * Timeout flow: If the client does not send the matching token within 120 seconds, the API Gateway self-submits a clearToken() message and expires the session.
+
+Test Case Mapping:
+Using the sequence of operations, students will design integration or RESTAssured test scripts to assert:
+* Response Code Match: Validating that the intermediate response is strictly an HTTP 202 code, not a 200 OK, before the MFA token is submitted.
+* Component Mocking Validation: Mocking the SMS Provider lifeline during testing to capture the asynchronous sendSMS payload and verify the exact length and format of the generated token.
+* Asynchronous Timeout Test: An automated test script that waits exactly 121 seconds before posting the MFA code, asserting that the API Gateway correctly rejects it with an HTTP 410 Gone or 401 Unauthorized response.
+
+
+-items: List<cartItems>
+-maxItems:long = 10000
+
++addItem(item: cartItem): Boolean
++removeItem(itemID:String)
++calculateTotal(): double
+
+
+
+CartItem
+productid:String
+price: double
+quantity: int
+
+getLineTotal(): double{Quantity>0}
+
+
+DiscountApplier
++applycoupon(items, couponCode)

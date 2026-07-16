@@ -1,0 +1,27 @@
+https://rustpad.io/#e7o5zM
+Master document for test strategy
+http://www.perftestplus.com/resources/Performance_Engineering_Strategy_Template.pdf
+
+https://www.atlassian.com/software/jira
+
+JIRA
+Cadence: Duration of a sprint(2 weeks)
+Velocity: No of tasks completed per sprint
+Story points: Measure of the effort required to complete  a task(fill in the story points/hours in a sprint hour)
+Sprint burndown Chart : to keep track of schedule
+After finishing the tasks sprint hours dip/the graph dips and leads to 0
+Add rules/restrictions by managers like nothing can move from in progress to "done" without review
+Story point estimation
+Instead of excel Xray can be used to track time
+Confluence for JIRA
+
+03. Static testing techniques
+Requirement phase - static files ie the documentation- still needed to be tested to check if error/wrong code/pseudocode- we use static testing
+Review and inspections: verify
+Defined as: 
+it is:
+informal and formal process to do this
+
+Fagan Inspection: 
+
+04. Dynamic testing techniques

@@ -1,0 +1,131 @@
+Pytest
+
+advantages
+pip install pytest pytest-xdist pytest-html
+
+pytest: The actual testing framework package.
+pytest-xdist: Allows us to run our tests in parallel.
+pytest-html: Allows us to generate a HTML report of our tests
+
+to execute pytest programs:
+
+functions should be : def test_example():  --> function has to start with test keyword
+then assertions     : 	num = 7  
+			assert num*num ==5
+
+So we need test keyword and minimum one assert statement.
+
+Make a new folder called 'tests'.
+Make sure your python filename follows the following naming scheme:
+test_<filename>.py
+<filename>_test.py
+pytest requires that "test_" or "_test" to be part of the name so that it can autodetect test files.
+
+Test folder -> Test Suite, Test files inside them - > Test class/scenario -> inside it -> test cases
+
+Output:
+collected 2 items  - number of functions
+first_test.py .F - . represents pass and F represents Fail
+if we run program using pytest -v : we get Passed and Failed in output
+
+To run just one file : pytest <filename>
+
+Execute a substring in test suite
+*Substring matches: pytest -k "test_sqrt"
+
+Use markerName : @pytest.mark.great  -> grouping the functions -> can be executed together
+Execute: pytest -m markerName
+
+Built-in Markers
+@pytest..mark.skip, @pytest.mark.skipif(True), @pytest.mark.xfail - > expected failure, @pytest.mark.parameterize -> parameterized test
+@pytest..mark.skip(reason="This test is skipped not implemented yet")
+if mark.xfail added to a pass function -> we get output-> xpass
+
+For parameterized -> we use a file called pytest.ini -> created outside tests
+--maxfail=5 -> added in pytest.ini - threshold for the no of failed tests, stops executing after threshold happens
+adopts = -v --html=Reports/HTML_Report.html -> gets an html report
+
+ pytest -v -k  test_prod
+pytest -v -k  test_prod 
+
+
+Fixture: a special functon that provides a common input to multiple tests - > 
+@pytest.fixture
+def input_value():
+	return 40
+def test_function1(input_value):
+	assert input_value<=40
+
+File -> conftest.py -> inside tests folder - available for all the the functions in tests -> global fixture
+
+we can have subfolder/module in tests folder and have conftest in it. then the fixture is only available in that folder.
+
+
+@pytest.mark.parameterize(pattern, input_value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

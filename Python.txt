@@ -1,0 +1,63 @@
+Python
+
+check slack/junit/slides
+
+Lists , tuple, set, dictionary
+Tuple: ordered unchangeable: unable to add remove update
+Sets :	
+
+Init functions - private func
+
+Underscore: no underscore-public, one under - protected, two under - private
+
+self as argument in every func in a class
+class MyClass:
+  x = 5 
+
+recursion
+Generators- returns an iterator - yield - range(return doesn't have- yield is done)
+
+Error handling - try, except, finally, else
+try:
+  print(x)
+except NameError:
+  print("variable must be initialized") 
+
+with open("file.txt", "r") as file: closed th file when error ks handled
+  for line in file:
+    print(line)
+
+ python -m venv .venv
+
+pip install pandas xlrd openpyxl xlwt
+
+Pandas -dataframe, csv files, xlsx(has sheets--.Rows-->cells-->data): use ExcelWriter
+
+# Import pandas, ExcelFile and ExcelWriter
+import pandas
+from pandas import ExcelFile
+from pandas import ExcelWriter
+
+# Structure our data as a dictionary
+data = {
+  "Vehicle Type": ["Car", "Car", "Bike"],
+  "Manufacturer": ["Maruti", "Toyota", "Royal Enfield"],
+  "Model": ["Swift", "Corolla", "Thunderbird"]
+}
+
+# Create a new DataFrame using the data
+dataframe = pandas.DataFrame(data)
+
+# Create an ExcelWriter object
+writer = ExcelWriter("vehicles.xlsx")
+
+# Write the DataFrame to the Excel file
+dataframe.to_excel(writer, "Sheet1", index=False)
+
+# Close the file
+writer.close()
+
+
+
+Python slide: https://slides.com/chandrak/ibm-fst-python-v2/fullscreen?token=xNGIf4c6
+Password: e1car0

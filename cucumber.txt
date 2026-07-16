@@ -1,0 +1,119 @@
+performance, cloud and data test
+
+Cucumber
+runs on JUnit
+Behaviour driven development(BDD)
+language-gherkins
+*feature file ->executable file in cucu
+Feature File
+The Annotations used in Gherkin are:
+GIVEN: Define pre-requisites of the application.
+WHEN: Trigger point for a scenario execution can be related more towards steps to be executed.
+THEN: Defined an outcome more like the expected result.
+AND: Acts as a logical bridge in between two statements.
+
+Then order should be placed successfully along with order confirmation id being generated- behavioural specification
+
+Before:runs before each scenarios
+After:runs after each scenarios
+BeforeAll:runs before all scenarios
+AfterAll: runs after all scenarios
+
+
+* Feature file: (executable file in Cucumber)
+    Given the user is on the TS homepage
+    When they click on the About Us link
+    Then they are redirected to the About Us page
+* Step Definition: Java methods that implement the steps defined in the Feature file
+    @Given("the user is on the TS homepage")
+    public void openTSHomepage() {
+        // Open the TS homepage
+    }
+    @When("they click on the About Us link")
+    public void clickAboutLink() {
+        // Locate the About link and click it
+    }
+    @Then("they are redirected to the About Us page")
+    public void verifyAboutPage() {
+        // Verify redirect to About page
+    }
+* TestRunner: Test suite/Execution Control file
+
+
+
+* Hooks:
+    - Before: Runs before EACH scenario
+    - After: Runs after EACH scenario
+    - BeforeAll: Runs before ALL scenarios
+    - AfterAll: Runs after ALL scenario
+* Tagged Hooks:
+    - Before("@TagName") -> Setup for a particular scenario
+    - After("@TagName") -> Tear down for a particular scenario
+
+
+
+Background steps
+In the example Feature file, we can see the steps under Background.
+For both the Scenarios, the user need to log in, therefore, the login steps are added in the Background, so that they happen before every Scenario.
+Feature: Test Background Feature
+Background: User is Logged In
+    Given I navigate to the login page
+    When I submit username and password
+    Then I should be logged in 
+
+*Parameterization without Examples
+Feature: Place order on the Amazon website.
+
+Scenario: Validate if a registered user is able to place an order
+    Given user is on the Amazon website
+    When user logs in with "username" and "password"
+    Then user should be able to view homepage
+    When user searches for "123"
+
+@When("user logs in with {string} and {string}")
+public void user_logs_in(String username, String password) {
+    //Actions to perform
+}
+
+*Parameterization with DataTable
+The simplest way to pass a list of values as input to a step definition is to use a data table.
+Consider the following Behavioural Specification:
+Given the following animals:
+  | cow   |
+  | horse |
+  | sheep |
+When the animals make a sound
+...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

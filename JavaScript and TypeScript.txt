@@ -1,0 +1,63 @@
+JavaScript and TypeScript
+
+Dynamic Programming
+Node JS allows us to use JS anywhere(frontend, backend,..)(any browser, mac,windows), MOCA??--look it up--JTest--not in syllabus
+NodeJS: https://nodejs.org/dist/v24.16.0/node-v24.16.0-x64.msi
+JS - runs on single thread-uses event loop to keep track of other tasks
+Nodejs:
+String, number, boolean, array, object
+for in loop and for of loop
+arrays,
+arrow funtions, echo keyword
+first calss functions- type of func where it can be passed as an argument- can store them in array, or as parameters, assign ot variables
+built-in functions
+Array helper methods->reduce func,map,,
+String function->index.of, charAt,split.=,substr,substring
+Scope
+nested functions, closure
+error handling
+
+Advanced JS - promises(resolve/reject) - to run in right sequence
+promise object - asynchronous task that will be done but isn't done yet
+Async?Await
+problem- loosely typed language, type safety
+
+TypeScript
+types, classes, interfaces, generic, modules
+# Make a new project folder
+$ mkdir project-name
+
+# Go into the project folder
+$ cd project-name
+
+# Initialize the package.json
+$ npm init
+
+# Add typescript to the project
+$ npm i -D typescript
+
+# Initialize the tsconfig.json
+# tsc is the typescript compiler
+$ npx tsc --init
+
+
+# Executing .ts files with tsx
+# tsx is a typescript executor
+$ npx tsx hello.ts
+
+# Compiling .ts files into .js files
+$ npx tsc
+$ node hello.js
+
+any type
+The following table illustrates all the built-in types in TypeScript −
+
+Data Type	Keyword	Description
+Number	number	Double precision 64-bit floating point values. It can be used to represent both, integers and fractions.
+String	string	Represents a sequence of Unicode characters
+Boolean	boolean	Represents logical values, true and false
+Void	void	Used on function return types to represent non-returning functions
+Null	null	Represents an intentional absence of an object value.
+Undefined	undefined	Denotes value given to all uninitialized variables
+classes/interface
+enums

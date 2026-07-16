@@ -1,0 +1,50 @@
+Apache JMeter
+Slides: https://slides.com/d/AL5ahvo/live
+
+JMeter: https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.zip
+
+JMeter Components: https://jmeter.apache.org/usermanual/component_reference.html
+Thread Groups: To create virtual load
+Samplers: Send requests
+Assertions: Used to assertion response values
+Listeners: Reporting elements -> Graphs or Tables or Tree
+Config Element: Used to set defaults for samplers
+Controllers: Control flow elements
+Processors: 
+    - Pre-Processors: Setting conditions before each request
+    - Post-Processors: Extracting values from responses
+Timers: Used to add delays
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

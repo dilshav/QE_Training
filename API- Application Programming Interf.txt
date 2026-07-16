@@ -1,0 +1,206 @@
+API- Application Programming Interface
+
+API download: https://smartbear.com/product/ready-api/free-trial/
+
+API slides: https://slides.com/d/Gq6zw5A/live
+
+MySQL Connector: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-9.7.0.zip
+
+
+https://restfulapi.net/rest-api-best-practices/
+
+
+Key Principles of REST
+1. Uniform Interface
+
+    Definition: A consistent method for interacting with resources.
+    Components:
+        Identification of resources through URIs.
+        Manipulation of resources using standard HTTP methods (GET, POST, PUT, DELETE).
+        Self-descriptive messages that provide enough information for processing.
+        Hypermedia as the engine of application state (HATEOAS), allowing clients to navigate resources dynamically.
+
+2. Statelessness
+
+    Definition: Each request from a client to a server must contain all the information needed to understand and process the request.
+    Implications: The server does not store any client context between requests, enhancing scalability and reliability.
+
+3. Client-Server Separation
+
+    Definition: The client and server are independent of each other.
+    Benefits: This separation allows for independent evolution of client and server applications, improving flexibility and scalability.
+
+4. Cacheability
+
+    Definition: Responses from the server must define whether they can be cached.
+    Purpose: Caching improves performance by reducing the need for repeated requests to the server.
+
+5. Layered System Architecture
+
+    Definition: A client cannot tell whether it is connected directly to the end server or an intermediary.
+    Advantage: This abstraction allows for scalability and flexibility in the architecture.
+
+6. Code on Demand (Optional)
+
+    Definition: Servers can extend client functionality by transferring executable code.
+    Use Case: This is rarely used but can simplify client implementations by reducing the need for pre-implemented features.
+
+
+SOAP has built in security- better and faster for point to point communication than REST
+Service Oriented Architecture - not supported by SOAP as it's point to point- started using REST
+
+REST has guideline not rules
+can transfer anything
+URI
+
+
+*Requests
+GET https://api.petstoreapi.com/v1/pets?status="PENDING"&limit=20
+protocol: https
+HTTP method: GET
+Server Name | Endpoint: api.petstoreapi.com
+Resource Path: /v1/pets
+Query Parameter: status="PENDING"&limit=20  -> key value pair, has added limit here
+
+GET https://api.petstoreapi.com/v1/pets/{id}
+protocol: https
+HTTP method: GET
+Server Name | Endpoint: api.petstoreapi.com
+Resource Path: /v1/pets
+Path Parameter: /{id}  -->dynamic value
+
+
+*Responses
+Status line: HTTPS/1.1 200 OK
+Headers:
+   Server: caddy
+   Date:
+   Accepted-HTTP-Methods:
+   E-Tag:
+Body: 
+
+
+
+https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+SOAP Project
+Rest request - JSON format
+JSONPath: twoways
+$.name
+$['name']
+
+{
+	"name": values
+}
+
+[
+{
+	"name": values
+}
+{
+	"name": values
+}
+]
+
+JSONPath for these two:
+$[0].name
+$[0]['name']
+
+Content type, accept, Authorization
+
+
+Auth - using token - read
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers - not in assessment
+GET POST.... request status code
+For REST API TEst:
+POST https://api.petstoreapi.com/v1/pets
+GET https://api.petstoreapi.com/v1/pets?status=PENDING
+DELETE https://api.petstoreapi.com/v1/pets/{id}
+
+
+Properties - to automate in readAPI
+Project: ${#Project#PropertyName}
+
+host: sql.freedb.tech
+username: u_bmZnmN
+password: 1Ly6oVjhcLcH
+database: freedb_FqkgFGdj
+
+
+RESTAssured - can use both rest, soap(xml and json)
+handcrust
+
+RestAssured.given(). //Request specifications-->url, header body, Query parameters and path parameters
+when(). //HTTP method
+then(). //Response specifications
+
+three ways to write request body
+body(String) --> dont use
+body(Object) --> body(HashMap<String, Object>) --> right
+body(File)  --> right
+
+HashMap<String, Object>
+{
+	"price": 204
+	"name" : "jacket"
+}
+
+
+
+		reqBody.put("name", "");
+		reqBody.put("species", "");
+		reqBody.put("breed", "");
+		reqBody.put("ageMonths", "");
+		reqBody.put("price", "");
+		reqBody.put("currency", "");
+		reqBody.put("status", "");
+
+correlation: Extract values from response and pass it as parameter to another request -->imp
+
+REST API docs: https://docs.petstoreapi.com/create-pet-25725401e0                                                                      
+
+RESTAssured slides: https://slides.com/d/6Trje7I/live
+
+
+Most from selenium, restassured Appium, JavaScript,cypress, playright(more ques)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

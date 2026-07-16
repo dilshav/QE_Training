@@ -1,0 +1,164 @@
+Apium
+
+https://github.com/passionwithsdet/selenium4enterprise
+
+Introduction to Mobile Testing
+Types of Mobile Testing:
+Functional Testing:(Validation)
+Compatibility Testing: 
+UI Testing: 
+Installation Testing: 
+Performance Testing:
+Localization Testing: 
+Security Testing: 
+
+.apk for android
+.ipa for iPhone
+
+
+three things to consider
+1. What type of app am I testing?
+	-Native Apps
+	-Web Apps
+	-Hybrid Apps
+2. Where am i testing the app?
+	-Phone
+	-Emulator
+	-Device Cloud - SauceLabs, BrowserStack, Perfecto, LamdaTest
+3. How am I testing the app?
+	-Android Studio | Apple XCode
+
+
+https://github.com/passionwithsdet/selenium4enterprise
+
+Appium slides: https://slides.com/d/F47E33I/live
+
+
+Appium Inspector: https://github.com/appium/appium-inspector/releases/download/v2026.5.1/Appium-Inspector-2026.5.1-win.exe
+Android Studio:https://developer.android.com/studio
+
+steps to setup appium
+1. run Appium server
+2. start the emulator or connect your phone
+3. open Appium inspector
+
+
+
+if emulator
+-got to more actions
+-new device sdk
+-slect medium device, android 17, no skins in additional settings
+
+
+if connecting phone
+To enabled USB Debugging:
+1. Open Settings on your phone
+2. Search for "Build Number"/"Build version"/"OS version"/"Version Number".
+3. Tap it about 7-8 times, till you see "You are now a developer!"
+4. Then, go back to Settings and search for "Developer Options"
+5. In there, turn on "USB debugging". On some phones, you might have to enable the following options also:
+    - Look for "Install via USB" and enable it
+    - Look for "USB Debugging (Security Settings)" and enable it
+    - Look for "Disable Permission Monitoring" and enable it
+    - Note: If you don't see the above options, ignore it.
+6. Once the options are enabled, connect your phone to your system via USB cable.
+7. Allow USB debugging on the device
+8. You can also check by running the following commands in the termina:
+    - cd AppData/Android/Sdk/platform-tools
+    - .\adb devices
+
+UIAutomator -driver- Appium
+XCUITest -ios
+
+platformName: android | iOS
+automationName: UiAutomator2 | XCUITest
+
+Appium Architecture
+Appium Client:
+Appium Server:
+End Device:
+W3C WebDriver Protocol:
+
+attributes in Appium inspector
+class : android.widget.Button
+text : Add account to device
+resource-id : com.android.chrome:id/signin_fre_continue_button -->use this
+cont_desc :  --> or use this
+
+
+Locators:
+AppiumBy.id("resource-id")
+AppiumBy.accessiblityId("content-desc")
+AppiumBy.className("class")
+AppiumBy.xpath("//tagName[@attribute='']")
+
+AndroidUiAutomator:
+UiSelector()
+UiScrollable()
+
+IosPredicates:
+
+ADB: Android Debug Bridge
+
+FirstTest.java for android
+for iOS
+// Set the desired capabilities for IOS
+//		XCUITestOptions options = new XCUITestOptions();
+//		// Options to select platform
+//		options.setPlatformName("ios");
+//		options.setAutomationName("XCUITest");
+//		// Option to install/open the required app
+//		options.setApp("testApp.ipa"); // Provide Absolute Path to .ipa file
+//		driver = new IOSDriver(serverUrl, options);
+
+Explicit and implicit wait
+
+Taking device screenshots
+getScreenshotAs()
+TakesScreenshot
+ File scrShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+    // This specifies the location the screenshot will be saved
+    File screenShotName = new File("src/test/resources/screenshot.jpg");
+    // This will copy the screenshot to the file created
+    FileUtils.copyFile(scrShot, screenShotName);
+    // Set filepath for image
+    String filePath = "../" + screenShotName;
+    // Set image HTML in the report
+    String path = "<img src='" + filePath + "'/>";
+    // Show image in report
+    Reporter.log(path);
+
+emulating touch actions
+viewport
+gestures
+duration
+pointerMove
+pointerUp
+PointerDown
+pause - to register that finger has touched that point
+
+three kinds of pointer
+mouse, Pen,
+
+
+
+https://drive.google.com/drive/folders/1Efu7TynQIDQynA0xXpkkYBTIfWhtJuNq?usp=sharing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

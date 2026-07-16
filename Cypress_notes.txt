@@ -1,0 +1,123 @@
+Cypress
+
+no xpath
+data-cy  --> use this to find element -> has -cy
+simple to do app
+
+by defaut has 30 sec wait time
+cypress setup
+tests in cypress
+describe, in which has 'it', cy to call function
+ To Do app test using cypress
+activities
+
+// By test attribute (BEST PRACTICE)
+cy.get('[data-cy="todo-input"]')
+// By CSS class
+cy.get('.todo-input')
+// By ID
+cy.get('#todo-input')
+// By text content
+cy.contains('Add')
+// Combined
+cy.get('[data-cy="todo-list"]').contains('Buy groceries')
+
+
+
+// Navigation
+cy.visit('/about')
+cy.go('back')
+cy.reload()
+
+// Interaction
+cy.get('[data-cy="input"]').type('Hello')
+cy.get('[data-cy="button"]').click()
+cy.get('[data-cy="checkbox"]').check()
+cy.get('[data-cy="select"]').select('Option 1')
+
+// Querying
+cy.get('[data-cy="list"]').find('li')
+cy.get('[data-cy="parent"]').children()
+cy.contains('Submit')
+
+wrapper command
+
+Cypress.Commands.add('addTodo', (text) => {
+  cy.get('[data-cy="todo-input"]').type(text)
+  cy.get('[data-cy="add-button"]').click()
+})
+
+Cypress.Commands.add('completeTodo', (index) => {
+  cy.get('[data-cy="todo-item"]')
+    .eq(index)
+    .find('[data-cy="todo-checkbox"]')
+    .check()
+})
+
+it('manages todos', () => {
+  cy.visit('/')
+  cy.addTodo('Buy groceries')
+  cy.addTodo('Walk dog')
+  cy.completeTodo(0)
+})
+
+Mocking Network Requests
+Intercept and stub a request
+// Match By URL Pattern
+cy.intercept('/api/todos')              // Exact match
+cy.intercept('/api/todos/*')            // Wildcard
+cy.intercept('**/todos')                // Any domain
+cy.intercept(/todos/)                   // Regex
+
+// Match By Method
+cy.intercept('GET', '/api/todos')
+cy.intercept('POST', '/api/todos')
+cy.intercept('DELETE', '/api/todos/*')
+
+// Match By Both
+cy.intercept({ method: 'GET', url: '/api/todos' })
+
+// Give Requests a Name to Wait for them
+cy.intercept('GET', '/api/todos').as('getTodos')
+
+cy.visit('/')
+
+// Wait for the request to complete
+cy.wait('@getTodos')
+
+cy.get('[data-cy="todo-item"]').should('have.length', 2)
+
+
+Testing error state
+simulate timeout
+simulate server errors
+
+When to Mock
+COmmon Pitfalls
+COmponent testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

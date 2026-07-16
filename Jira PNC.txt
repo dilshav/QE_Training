@@ -1,0 +1,61 @@
+Jira PNC
+plan, track and manage
+
+plugins used in PNC = > XRAY - for tracking reports(we use in PNC) - already integrated
+So we just have to click it when we are uploading stuffs on jira
+from requirement to end we can use it
+
+Features:-
+Manual & automated testing
+Requirement traceability
+Test execution tracking
+Rich Reporting
+CI/CD integration
+Confluence Inyegration
+
+story, epic, Task, Bug/defect, sub-task
+
+Xray issue type:
+test, test set, test plan, test execution, precondition, test environment
+
+explained how epics , stories, test cases work
+should have test coverage?????
+
+Test phase should be same as TSAT category
+
+TSAT category
+Repository reusability
+
+Test Types:-
+Functional, Regrexsion, Performance, E2E, Integrstion, UAT
+
+defect lifecycle in jira
+traceability flow
+
+
+evidence- document - keep it in common sharepoint - drive
+
+
+07/07/2026
+
+TSA - MTSA- TSAT
+
+TSA- Testing standard and assessment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

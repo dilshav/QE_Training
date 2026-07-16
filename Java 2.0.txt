@@ -1,0 +1,353 @@
+Java 2.0
+
+Exception Handling - exception hierarchy- checked and unchecked exceptions - try, catch, finally, throw, throws
+   To handle exceptions two ways - either give a message or handle it by adding a new statement.
+   As multiple catches comes , it becomes generic as goes down
+Collections Framework - 4 technical interface - store multiple values - Lists, Set, Queue, Maps:-, sorted/unsorted, ordered/unordered
+Lists: add, remove, retrieve, modify, iterate any way, store null value, one data type: ArrayList, LinkedList 
+ // Syntax for ArrayList
+List<DataType> arrlist = new ArrayList<>();
+ArrayList<DataType> arrlist = new ArrayList();
+
+// Syntax for LinkedList
+List<DataType> linkedlist = new LinkedList<>();
+LinkedList<DataType> linkedlist = new LinkedList<>();
+
+Left can never be primitive datatype(int, string, boolean), it should be class wrap of the whole thing(eg: no <int>, it should be <Integer>)
+numList.add(), numList.remove(), numList.set(0,4),  numList.get(0) <numList.contains(), numList.size()>- common in all list
+
+//if next is present - for speed, for just reading - for each loop
+Iterator numIter = numList.listIterator();
+while(nmIter.hasNext()){}
+
+Sets: only store unique values(no duplicates), automatically sorts value, no index(no modifying, iterate in a fixed manner - like protected set), can remove the value(no index can  be used), cam just print(it converts the set to toString), convert to list
+ Hashset Set<String> names = new HashSet<>();, 
+
+Maps: keys-values, keys can be object/no duplicates/accessed by key/if key deleted value delete, use it with API testing
+  functions- put(), get(), keyset(),  values(), entryset(). remove(k), remove(k,v), containskey(k), constainsvalue(v)
+
+Map<String, Object> jsonObject = new HashMap();
+
+{
+    "id": 10,
+    "name": "Jack"
+}
+
+Activity 8
+In this exercise,
+
+Create an ArrayList named myList of type String.
+Add 5 names to the ArrayList using add() method.
+Then print all the names using for loop.
+Then use get() method to retrieve the 3rd name in the ArrayList.
+Use contains() method to check if a name exists in the ArrayList.
+Use size() method to print the number of names in the ArrayList.
+Use remove() method to remove a name from the list and print the size() of the list again.
+
+Activity 9
+In this exercise,
+
+Create a HashSet named hs.
+Add 6 objects using add() method to the HashSet.
+Then print the size of the HashSet using the size() method.
+Remove an element using the remove() method.
+Also try to remove an element that is not present in the Set.
+Use the contains() method to check if an item is in the Set or not.
+Print the updated set.
+
+
+Activity 10
+In this exercise,
+
+Create a Map named colours with integer keys and String values.
+Add 5 random colours to it and print the Map to the console.
+Remove one colour using the remove() method.
+Check if the colour green exists in the Map using the containsValue() method.
+Print the size of the Map using the size() method.
+
+
+
+
+Activity 7
+//In this activity we will be implementing Hybrid Inheritance (Multiple and Simple)
+//Start by creating two interfaces - BicycleParts and BicycleOperations
+//In BicycleParts:
+//public int tyres: number of tyres on the bicycle
+//public int maxSpeed: max speed of bicycle
+//In BicycleOperations:
+//public applyBrake(int decrement): how much to slow down the bicycle by.
+//public speedUp(int increment): how much to speed up the bicycle by.
+//Next create the base class Bicycle. It implements both interfaces BicycleParts, BicycleOperations.
+//Initialize the values of gears and currentSpeed in a constructor.
+//Write the definition of the applyBrake() and speedUp().
+//applyBrake() reduces the currentSpeed by the number passed to the method.
+//speedUp() increases the currentSpeed by the number passed to the method.
+//Add another method to the base class - bicycleDesc().
+//It prints the number of gears and the maxSpeed of the bicycle.
+//Now create a derived class, MountainBike that extends Bicycle.
+//
+//This class adds another property: seatHeight.
+//In the constructor for MountainBike, use the super keyword to include gears and currentSpeed for this class. Also initialize seatHeight.
+//Add setHeight() method to the class to add a new value for the seatHeight variable.
+//public void setHeight(int newValue) {
+//    seatHeight = newValue;
+//}
+//Override the bicycleDesc() method of the super class to print the seat height also.
+Activity 7
+* Creating two interfaces - BicycleParts and BicycleOperations
+BicycleParts:
+    public int tyres: number of tyres on the bicycle
+    public int maxSpeed: max speed of bicycle
+In BicycleOperations:
+    public applyBrake(int decrement): how much to slow down the bicycle by.
+    public speedUp(int increment): how much to speed up the bicycle by.
+
+* Create Bicycle which implements both the interfaces and create a constructor to initialize the variables.
+    - Initialize the values of gears and currentSpeed in a constructor.
+    - Write the definition of the applyBrake() and speedUp().
+    - Also a bicycleDesc() to print the details of the bicycle.
+
+* MountainBike that extends Bicycle
+    - In MountainBike, use the super keyword to include gears and currentSpeed for this class. Also initialize seatHeight.
+    - Add setHeight() method to the class to add a new value for the seatHeight variable.
+    - Override the bicycleDesc() method of the super class to print the seat height also.
+
+
+
+
+
+interface BicycleParts {
+	public int tyres = 2;
+	public int maxSpeed = 25;
+}
+
+interface BicycleOperations {
+	public void speedUp(int increment);
+
+	public void applyBrake(int decrement);
+}
+
+class Bicycle {
+	int gears;
+	int currentSpeed;
+
+	// Initialize the class properties
+	public Bicycle(int gears, int currentSpeed) {
+		this.gears = gears;
+		this.currentSpeed = currentSpeed;
+	}
+
+	// Implement the abstract functions
+	public void speedUp(int increment) {
+		System.out.println("Increasing speed by " + increment);
+		this.currentSpeed += increment;
+	}
+
+	public void applyBrake(int decrement) {
+		System.out.println("Increasing speed by " + decrement);
+		this.currentSpeed -= decrement;
+	}
+
+	// Function to display details of Bicycle
+	public void bicycleDesc() {
+		System.out.printf("The bicycle has %d gears and a max speed of %d. \n "
+			+ "It is currently going at %d km/h",
+			this.gears, BicycleParts.maxSpeed, this.currentSpeed);
+	}
+}
+
+class MountainBike extends Bicycle {
+	int seatHeight;
+	// Constructor
+	public MountainBike(int gears, int currentSpeed, int seatHeight) {
+		super(gears, currentSpeed);
+		this.seatHeight = seatHeight;
+	}
+	
+	// Function to adjust seat height
+	public void setHeight(int height) {
+		this.seatHeight += height;
+		System.out.println("Seat adjusted.");
+	}
+	
+	// Function to display details of Bicycle
+	public void bicycleDesc() {
+		System.out.printf("The bicycle has %d gears and a max speed of %d. \n "
+			+ "The seat height is set to %d. \n "
+			+ "It is currently going at %d km/h \n",
+			this.gears, BicycleParts.maxSpeed, this.seatHeight, this.currentSpeed);
+	}
+}
+
+public class Activity7 {
+	public static void main(String[] args) {
+		// Create an object of MountainBike
+		MountainBike mb1 = new MountainBike(6, 0, 2);
+		
+		// Call its functions
+		mb1.speedUp(10);
+		mb1.bicycleDesc();
+
+		mb1.setHeight(5);
+
+		mb1.applyBrake(3);
+		mb1.bicycleDesc();
+	}
+}
+
+
+Generics - <String> - allows to set datatype for list/class
+Generic class { class GenericClass<T>{}}, {class GenericClass<T?{//when any numbers instead of just int}}, { class GenericClass<T> extends String{}}
+// create a generics class
+class GenericsClass<T> {
+    // variable of T type
+    private T data;
+
+    public GenericsClass(T data) {
+        this.data = data;
+    }
+
+    // method that return T type variable
+    public T getData() {
+        return this.data;
+    }
+}            
+Generic Methods
+class DemoClass {
+    // creae a generics method
+    public <T> void genericsMethod(T data) {
+        System.out.println("Generics Method:");
+        System.out.println("Data Passed: " + data);
+    }
+}
+
+Lambda Functions : (int num1, int num2) - >{return num1 +num2} (written like a function)
+Lambda expression : () -> system.out.println("FF")(one expression)
+(parameter list) -> lambda body
+
+
+Consumer, Producer,  - functions as arguments
+
+public class LambdaExample{
+    public static void main(String[] args) {
+        // Create a ArrayList
+        List<String> list=new ArrayList<String>();
+        // Add values to the list
+        list.add("Rick");
+        list.add("Negan");
+        list.add("Daryl");
+        list.add("Glenn");
+        list.add("Carl");
+        
+        // Loop through ArrayList
+        list.forEach( 
+            // lambda expression 
+            (names)->System.out.println(names)
+        );
+    }
+}
+
+
+Functional Interface
+// Functional Interface
+interface FuncInterfaceExample {
+    String display(String str);
+}
+
+public class ClassToImplmentInterface {
+    public static void main(String[] args) {
+
+        // Lambda expression to implement the interface method
+        FuncInterfaceExample obj = (String str) -> {
+            return str;
+        };
+        
+        // Print statement calling the display method
+        System.out.println(obj.display("Hello"));
+    }
+}
+
+FileUtils Class, apache CommonsIO
+public class IOTester {
+    public static void main(String[] args) {
+        try {
+            //Using FileUtils
+            usingFileUtils();
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void usingFileUtils() throws IOException {
+        //get the file object
+        File file = FileUtils.getFile("input.txt");
+
+        //get the temp directory
+        File tmpDir = FileUtils.getTempDirectory();
+
+        System.out.println(tmpDir.getName());
+
+        //copy file to temp directory
+        FileUtils.copyFileToDirectory(file, tmpDir);
+
+        //create a new file
+        File newTempFile = FileUtils.getFile(tmpDir, file.getName());
+
+        //get the content
+        String data = FileUtils.readFileToString(newTempFile, Charset.defaultCharset());
+
+        //print the content
+        System.out.println(data);
+    }
+}
+
+IOUtils class
+Random Class: nextBoolean, nextFloat, nextInt, setSeed
+Scanner cLass
+
+
+Activity 11
+In this activity, we will be creating a functional interface and use it with a lambda expression.
+Create an interface named Addable that contains a single method, add(). This method accepts two arguments, num1 and num2.
+Next, create a class named Activity11 with a main method.
+In this main method, create two variables, both of type Addable(the interface).
+One variable, say ad1, contains a lambda expression(no body), that saves the result of num1 plus num2.
+The other variable, say ad2, contains a lambda function(has a body), that also saves the result of num1 plus num2.
+
+
+
+Add a scan statement with nextInt() to accept only integer values, inside a loop to accept multiple values.
+Use the hasNextInt() method with the loop to ensure only integer values are accepted.
+while(scan.hasNextInt()) {
+    list.add(scan.nextInt());
+}
+
+Activity 13
+In this activity, create a registerUser() function that accepts a user's age, as a String, that is taken from the console using Scanner class and store it in an integer variable. (Hint: use Integer.parseInt() to convert age to int.)
+If the string cannot be converted to int (e.g., "twenty"), catch the NumberFormatException and print: "Error: Age must be a valid number."
+
+If the number is parsed successfully but is less than 18, throw an IllegalArgumentException with the message "Users must be at least 18 years old." Catch this exception and print the error message.
+
+If the age is valid, then print the message: "Registration successful! Welcome aboard."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

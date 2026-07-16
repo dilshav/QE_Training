@@ -1,0 +1,44 @@
+TS Activities:
+1. The Dynamic Greeting (Variables & Template Literals)
+### The Goal
+* Create a function that takes a name and an age, then returns a formatted string that prints the year in which they turn 100.
+### TS Task
+Ensure the name is a string and age is a number.
+
+2. FizzBuzz 2.0 (Loops & Logic)
+### The Goal
+Write a loop that iterates from 1 to n.
+Take n as a number argument to count how many numbers the resulting array will have.
+### Logic
+* If divisible by 3, print "Fizz".
+* If divisible by 5, print "Buzz".
+* If divisible by both, print "FizzBuzz".
+### TS Task
+Ensure your function returns an array of strings.
+
+3. The Object Architect (Interfaces & Objects)
+### The Goal
+Define an interface named Book.
+### Tasks
+* Create an interface with properties for title, author, and year.
+* TS Task: Create an interface Book where year is optional (?) and author is a readonly property.
+* Then create an object with the Book type and also an array of object with Book[] type.
+
+4. Array Transformer (Map & Filter)
+### The Goal
+* Given an array of numbers, create a new array containing only the squares of the even numbers.
+* Input: [1, 2, 3, 4, 5, 6]
+* Expected Output: [4, 16, 36]
+
+5. The Async Fetcher (Promises & Async/Await)
+### The Goal: Simulate an API call.
+* Task: Create a function fetchData that returns a Promise. Use setTimeout to resolve it after 2 seconds with a dummy JSON object.
+* TS Task: Define a type for the response data so the compiler knows exactly what the "API" returns.
+
+6. Script Sanitization
+### The Goal
+Neutralize strings that could contain malicious code and prepare them for safe storage or display.
+### Task
+* Create a utility function to sanitize raw user input that does the following:
+    * Trims leading/trailing whitespace.
+    * Escapes HTML special characters (preventing XSS).

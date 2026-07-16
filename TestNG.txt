@@ -1,0 +1,193 @@
+TestNG
+Test Driven Practice -TDP
+https://testng.org/testng-eclipse-update-site
+automatically creates html report
+
+TestNG annotations
+@Test - The annotated method is a test case.
+@BeforeClass - The annotated method will run once before each class.
+@AfterClass - The annotated method will run once after each class.
+
+Best practise: one class test one page
+
+class TestClass1{
+//setup func
+@BeforeClass
+public void setup(){
+//setup statements
+//Driver, wait, action initialization
+//open the page
+}
+//test class
+@Test
+public void test(){
+
+}
+//Teardown func
+@AFterClass
+public void teardown(){
+//close browser
+quit.driver();
+}
+}
+
+
+Annotations in TestNG:
+@BeforeSuite
+    @BeforeTest
+        @BeforeClass
+            @BeforeMethod
+                @Test
+            @AfterMethod
+        @AfterClass
+    @AfterTest
+@AfterSuite
+
+If multiple tests written in class, not run in top to bottom order -> runs based on alphabetical order of the test/method name
+Use priority in @Test() to make test run first
+Dependency - > it depends on a method ->  @Test(dependsOnMethods ={"verifyPageTitle"})
+if verifyPageTitle fails, the method which depends on it also fails
+
+TestNG Assertions
+cookies
+
+*skipping tests
+comment @Test annotation
+or
+@Test(enabled=false)
+or
+conditional skip -> throw new SkipException("Reason for skipping"):
+
+TestNG Test Suites -> multiple test cases can be executed, through testing.xml
+suites can be used for parallelly running classes, methods, tests 
+<suite parallel="false" name="FSI Test Suite"> // sequential 
+<suite parallel="true" name="FSI Test Suite"> //parallel
+<suite parallel="classes" name="FSI Test Suite">
+<suite parallel="false" thread-count="6" name="FSI Test Suite"> //normally 4 as core , recommended not more than 6
+
+
+TestNG Groups - in classes for methods or in testing.xml file as well
+@Test(groups= {"buttonTests"})
+When groups run in testing.xml, add group name to setup and teardown func, for it to run as weel but as there can be many group names we write
+@BeforeClass(alwaysRun=true)
+@AfterClass(alwaysRun=true)
+need to run the class in xml as well to run the group name
+
+
+
+To run groups:
+* Add the groups property to the relevant test methods
+@Test(groups = {"group1", "group2", ...})
+* Set the alwaysRun property on the setup and teardown functions
+@BeforeClass(alwaysRun = true)
+@AfterClass(alwaysRun = true)
+* Add the groups tag in the test block in the testng.xml file
+<groups>
+    <run>
+        <include name="headingTests" />
+    </run>
+</groups>
+Note: Make sure to add the class names to the tests that contain the grouped functions
+
+
+TestNG Parameters
+
+testScript.java
+import ...
+import org.testng.annotations.Parameters;
+
+@Test 
+@Parameters({ "sUsername", "sPassword" })
+public void test(String sUsername, String sPassword) {
+    //Statements that use sUsername and sPassword.
+}
+
+testing.xml
+<suite name="Suite">
+    <test name="Test">
+    <parameter name="sUsername" value="testuser"/>
+    <parameter name="sPassword" value="Test@123"/>
+    <classes>
+        <class name="PackageName.ClassName" />
+    </classes>
+    </test>
+</suite>
+
+TestNG DataProviders
+
+Low level and level logging -> shows up in html report
+Reporter.log("username entered"); -> low level -> for every step you log
+Reporter.log("Test ended"); -> write for only main events
+
+
+Data-Driven Testing
+Using CSV Files
+where ips for test comes from external source
+To read/write data for Selenium tests using a CSV file, a third party API called OpenCSV is used.
+The JAR file can be downloaded from here.
+You can also install it through maven by adding the following dependencies to your pom.xml file.
+<dependencies>
+    <dependency>
+        <groupId>com.opencsv</groupId>
+        <artifactId>opencsv</artifactId>
+        <version>5.11.2</version>
+    </dependency>
+</dependencies>
+
+
+Apache POI
+//For .xls files
+Workbook workbook = new Workbook();
+Sheet sheet = workbook.createSheet("Sheet Name");
+
+//For .xlsx files
+XSSFWorkbook workbook = new XSSFWorkbook();
+XSSFSheet sheet = workbook.createSheet("Sheet Name");
+
+Report with ExtentReport
+
+fixture for selenium
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

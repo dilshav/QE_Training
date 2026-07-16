@@ -1,0 +1,130 @@
+Playwright
+Automated testing for modern web apps - 
+JS based
+automate user
+multiple 
+does not additional framework to 
+need to add custom attribute: data test id - to find element
+
+npx init
+npm init playwright@latest
+npx playwright test --ui
+npx playwright codegen
+
+playwright installation
+
+When is the page loaded in JS: 
+largestcontent/smallest?/nddnv
+Lazy loading - when hydration is fixed - all loaded
+playwright only interacts after whole page is loaded unlike others
+
+
+Uses ARIA roles in playwright
+locators
+page.getByRole()	Locate using explicit and implicit a11y attributes
+page.getByText()	Locate an element based on it's text content
+page.getByLabel()	Locate a form control based on it's associated label
+page.getByPlaceholder()	Locate an input using it's placeholder text
+page.getByAltText()	Get an image by using it's alt text
+page.getByTitle()	Locate an element using it's title attribute
+page.getByTestId()	Locate an element using it's "data-testid" attribute.
+
+https://www.w3.org/TR/wai-aria-1.2/#namefromauthor
+
+can use xpath/css
+	
+// Using Text
+//filter
+await page
+    .getByRole('listitem')
+    .filter({ hasText: 'Product 2' })
+    .getByRole('button', { name: 'Add to cart' })
+    .click();
+
+
+Basic Actions
+locator.click()
+Left click the element
+locator.fill()	Fill the input field (fast, like a paste action)
+locator.type()	Type text character by character (slow typing)
+locator.focus()	Focus the element
+locator.press()	Press a single key
+
+element infor
+locator.textContent()	
+locator.innerHTML()	
+locator.inputValue()	
+locator.getAttribute(attr)	
+locator.boundingBox()	
+
+
+page.evaluate
+
+Assertions
+
+Actions
+This is a few more Playwright actions you can do.
+Note that there are still a few more more, which we will be covering in due time.
+Action	Description
+locator.click(button)	You can pick what button to click with.
+button can be "left", "right", or "middle".
+locator.dblClick(button)	Double click an element.
+button can be "left", "right", or "middle".
+locator.dragTo(otherLocator)	Drags an element to a different element.
+locator.hover()	Hovers the mouse over an element
+page.mouse.down()	Left click and hold the mouse at it's current location.
+page.mouse.up()	Raise a held down mouse button.
+
+
+
+Selenium Grid: 
+Reading material: https://www.selenium.dev/documentation/grid/components/
+Program: https://github.com/SirKitBreaker/Selenium_Grid_Docker
+Selenium IDE and Grids
+Handling Alerts
+
+
+https://drive.google.com/file/d/1lwizgtqbm762q4fpGyWqhjafexGjKE_E/view?usp=drive_link
+
+use csv file for data driven tests
+
+record:
+
+To read CSV files:
+import { parse } from "csv-parse/sync";
+import fs from "fs";
+import path from "path";
+
+type Record = {
+    // The number of columns in the CSV file
+    // should match number number of names set here.
+    tasks: string;
+};
+
+export default function readCSV(filePath: string): Record[] {
+    // Read the CSV file and parse it into an array of records
+    const records: Record[] = parse(
+        fs.readFileSync(path.join(__dirname, filePath), "utf-8"),
+        {
+            columns: true,
+            skipEmptyLines: true,
+        }
+    );
+
+    // Return the array of records
+    return records;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

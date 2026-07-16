@@ -1,0 +1,40 @@
+Big Data Testing GIT
+Git cheatsheet: https://education.github.com/git-cheat-sheet-education.pdf
+HTTP Status codes: https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+Topics to focus on:
+* Selenium
+* Java
+* TestNG
+* REST API/RESTAssures
+* Appium
+* SQL
+* Cucumber
+* Python/Javacript
+* CICD - Git
+
+
+RESTAssured:
+given().  -> Request specifications
+    baseURI
+    headers
+    queryparam
+    pathParam
+    body
+    multipart(filepath)
+    log().all()
+when().  -> HTTP actions
+    post()
+    get()
+    put()
+    delete()
+    patch()
+then().   -> Response specifications
+    log().all()
+    statusCode()
+    body(Matchers assertions)
+    time()
+
+For handling multiple windows:
+* getWindowHandle(): For currently active window's handle as a String
+* getWindowHandles(): For all windows' handles as a Set<String>

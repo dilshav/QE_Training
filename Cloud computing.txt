@@ -1,0 +1,12 @@
+Cloud computing
+
+Podman
+
+Container: standardized unit of software : not just a closed a closed off folder also provide runnable environment ()
+
+
+create folder in vs. Add index and package in it. add Dockerfile
+hub.docker.com - search for environment we want
+podman build -t docker.io/dilsharv/simpleweb ./
+
+podman compose up
